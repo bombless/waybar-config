@@ -15,6 +15,8 @@
         "custom/arch",
         "custom/weather",
 //        "custom/separator-line",
+
+        "hyprland/workspaces",
         "niri/workspaces"
 //        "custom/separator-line",
 //        "custom/media",
@@ -94,7 +96,24 @@
       "active": "󱓻"
       }
     },
-
+    // --- Hyprland 工作区 ---
+    "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "0",
+      "active": "󱓻"
+      }
+    },
     // --- 媒体播放模块 ---
     "custom/media": {
         "format": "{}",
