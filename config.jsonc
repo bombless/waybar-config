@@ -36,15 +36,15 @@
     // 右侧：硬件监控 -> 网络 -> 蓝牙 -> 音频 -> 亮度 -> 电池 -> 抑制休眠 -> 时间 -> 托盘 -> 电源
     "modules-right": [
         "custom/notification",
+        "custom/openclaw-dashboard", // OpenClaw 统计板概览
         "group/hardware", // CPU/内存/温度
         "network", // 网络
         "bluetooth", // 蓝牙
         "group/audio", // 音量
         "group/g-backlight", // 屏幕亮度 (原 ddcutil)
         "group/tools", // 新增：咖啡 + 性能 (合并药丸)
-        "battery", // 电池
+        //"battery", // 电池
         "custom/clock", // 时钟(带农历)
-        "group/proxies", // 代理控制组
         "custom/clipboard", // 剪贴板
         "tray", // 托盘
         "group/power" // 电源菜单
@@ -414,6 +414,15 @@
         "max": 100,
         "orientation": "horizontal"
     },
+    // --- OpenClaw Enhanced Dashboard 状态 ---
+    "custom/openclaw-dashboard": {
+        "exec": "python3 ~/.config/waybar/scripts/openclaw_dashboard.py",
+        "return-type": "json",
+        "interval": 5,
+        "tooltip": true,
+        "on-click": "~/.local/bin/qs-popup openclaw-dashboard",
+        "on-click-right": "~/.local/bin/qs-popup openclaw-dashboard --pos top-right --margin 30,20"
+    },
     //==================== 新增：工具组 (Tools) ====================
     "group/tools": {
         "orientation": "inherit",
@@ -476,72 +485,6 @@
         "interval": 1,
         "on-click": "~/.config/quickshell/scripts/clock_toggle.sh",
         "on-click-right": "qs-popup calendar"
-    },
-    // ==================== 代理控制组 (Proxies) ====================
-    "group/proxies": {
-        "orientation": "horizontal",
-        "drawer": {
-            "transition-duration": 500,
-            "children-class": "child-proxies",
-            "transition-left-to-right": false
-        },
-        "modules": [
-            "custom/proxy-status",
-            "custom/proxy-kernel",
-            "custom/proxy-power",
-            "custom/proxy-rule",
-            "custom/proxy-global",
-            "custom/proxy-direct"
-        ]
-    },
-    "custom/proxy-status": {
-        "format": "{}",
-        "return-type": "json",
-        "exec": "~/.config/waybar/scripts/proxies-control.sh status",
-        "on-click": "~/.config/waybar/scripts/proxies-control.sh toggle-mode",
-        "on-click-right": "brave --app=\"http://127.0.0.1:9090/ui/#/proxies\"",
-        "interval": 5,
-        "signal": 8
-    },
-    "custom/proxy-kernel": {
-        "format": "{}",
-        "return-type": "json",
-        "exec": "~/.config/waybar/scripts/proxies-control.sh kernel-status",
-        "on-click": "~/.config/waybar/scripts/proxies-control.sh switch-kernel",
-        "interval": 5,
-        "signal": 8
-    },
-    "custom/proxy-power": {
-        "format": "{}",
-        "return-type": "json",
-        "exec": "~/.config/waybar/scripts/proxies-control.sh power-status",
-        "on-click": "~/.config/waybar/scripts/proxies-control.sh toggle-power",
-        "interval": 5,
-        "signal": 8
-    },
-    "custom/proxy-rule": {
-        "format": "{}",
-        "return-type": "json",
-        "exec": "~/.config/waybar/scripts/proxies-control.sh mode-rule-status",
-        "on-click": "~/.config/waybar/scripts/proxies-control.sh set-rule",
-        "interval": 5,
-        "signal": 8
-    },
-    "custom/proxy-global": {
-        "format": "{}",
-        "return-type": "json",
-        "exec": "~/.config/waybar/scripts/proxies-control.sh mode-global-status",
-        "on-click": "~/.config/waybar/scripts/proxies-control.sh set-global",
-        "interval": 5,
-        "signal": 8
-    },
-    "custom/proxy-direct": {
-        "format": "{}",
-        "return-type": "json",
-        "exec": "~/.config/waybar/scripts/proxies-control.sh mode-direct-status",
-        "on-click": "~/.config/waybar/scripts/proxies-control.sh set-direct",
-        "interval": 5,
-        "signal": 8
     },
     // --- 系统托盘 (Tray) ---
     "tray": {

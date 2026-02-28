@@ -864,3 +864,11 @@ tooltip label {
     min-width: 0;
     background: transparent;
 }
+
+/* OpenClaw enhanced dashboard */
+#custom-openclaw-dashboard {
+  padding: 0 10px;
+}
+#custom-openclaw-dashboard.down {
+  color: #e06c75;
+}
